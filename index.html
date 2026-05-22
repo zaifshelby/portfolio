@@ -163,25 +163,6 @@
                         </section>
                     </div>
                     <div class="space-y-8">
-                        <!-- Premium Smartphone Video Showcase -->
-                        <div id="mobile-preview-container" class="p-6 rounded-[2rem] border border-white/5 bg-zinc-950/40 backdrop-blur-md flex flex-col items-center justify-center">
-                            <span class="text-xs uppercase font-extrabold tracking-[0.25em] text-purple-400 mb-6 block">Mobile Experience</span>
-                            <!-- iPhone/Modern Device Frame Mockup -->
-                            <div class="relative mx-auto border-[8px] border-zinc-800 rounded-[3rem] h-[520px] w-[245px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] overflow-hidden bg-black ring-1 ring-white/10">
-                                <!-- Gloss Reflection glass shine overlay -->
-                                <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none z-20"></div>
-                                <!-- Dynamic Notch / Island -->
-                                <div class="absolute top-2 left-1/2 -translate-x-1/2 w-[90px] h-[18px] bg-zinc-800 rounded-full z-30 flex items-center justify-between px-2">
-                                    <div class="w-1.5 h-1.5 bg-zinc-900 rounded-full"></div>
-                                    <div class="w-12 h-1 bg-zinc-900 rounded-full"></div>
-                                </div>
-                                <!-- Playable Video Component -->
-                                <video id="modal-video" class="w-full h-full object-cover relative z-10" autoplay loop muted playsinline preload="auto">
-                                    <source src="" type="video/mp4">
-                                </video>
-                            </div>
-                        </div>
-
                         <div class="p-8 glass border border-white/5 bg-zinc-950/40">
                             <h3 class="text-xl font-bold text-white mb-6 tracking-wide uppercase">Results & Impact</h3>
                             <ul id="modal-results" class="space-y-4">
@@ -523,27 +504,6 @@
             const stackDiv = document.getElementById('modal-stack');
             stackDiv.innerHTML = data.stack.map(s => `<span class="px-3 py-1 bg-white/10 rounded-full text-xs font-bold">${s}</span>`).join('');
             
-            // Set dynamic video source inside smartphone mockup based on active project
-            const videoEl = document.getElementById('modal-video');
-            const previewContainer = document.getElementById('mobile-preview-container');
-            
-            if (projectId === 'lumina-shades') {
-                previewContainer.style.display = 'flex';
-                // Load actual playable local video stream for Lumina Shades
-                videoEl.src = "https://drive.google.com/file/d/10pH296SF0LakuO_vSWVXwO9za3vEFpzp/view?usp=sharing";
-                videoEl.load();
-                videoEl.play().catch(e => console.log("Video playback prevented:", e));
-            } else if (projectId === 'mairaj-watches') {
-                previewContainer.style.display = 'flex';
-                // Load actual playable local video stream for Mairaj Watches
-                videoEl.src = "https://drive.google.com/file/d/18NPTrFRtQ--87e5Mja9H1-zXkmgf_amo/view?usp=sharing";
-                videoEl.load();
-                videoEl.play().catch(e => console.log("Video playback prevented:", e));
-            } else {
-                previewContainer.style.display = 'none';
-                videoEl.src = "";
-            }
-
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
             gsap.to('#modal-content', { opacity: 1, y: 0, duration: 0.8, delay: 0.2, ease: "power4.out" });
@@ -553,10 +513,6 @@
             gsap.to('#modal-content', { opacity: 0, y: 30, duration: 0.5, onComplete: () => {
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
-                
-                // Clear source to halt stream playback
-                const videoEl = document.getElementById('modal-video');
-                videoEl.src = "";
             }});
         };
 
