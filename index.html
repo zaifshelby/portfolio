@@ -126,36 +126,73 @@
 
     <!-- Case Study Modal Overlay -->
     <div id="case-study-modal" class="overflow-y-auto">
-        <div class="max-w-4xl mx-auto py-20 px-6 relative">
+        <div class="max-w-5xl mx-auto py-20 px-6 relative">
             <button id="close-modal" class="fixed top-10 right-10 w-12 h-12 glass flex items-center justify-center rounded-full hover:bg-white hover:text-black transition-all z-[110]">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
             <div id="modal-content" class="opacity-0 translate-y-10">
-                <p id="modal-category" class="text-purple-400 font-bold uppercase tracking-widest mb-4"></p>
-                <h2 id="modal-title" class="text-5xl md:text-7xl font-extrabold mb-8"></h2>
+                <p id="modal-category" class="text-purple-400 font-bold uppercase tracking-widest mb-4 text-xs sm:text-sm"></p>
+                <h2 id="modal-title" class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight"></h2>
                 
                 <div id="modal-image" class="w-full aspect-[16/9] rounded-3xl mb-12 bg-cover bg-center glass"></div>
 
                 <div class="grid md:grid-cols-3 gap-12 text-gray-300">
-                    <div class="md:col-span-2 space-y-12">
+                    <div class="md:col-span-2 space-y-10">
                         <section>
-                            <h3 class="text-2xl font-bold text-white mb-4">The Challenge</h3>
-                            <p id="modal-challenge" class="text-lg leading-relaxed"></p>
+                            <h3 class="text-2xl font-bold text-white mb-3">Project Overview</h3>
+                            <p id="modal-overview" class="text-lg leading-relaxed text-gray-400"></p>
                         </section>
                         <section>
-                            <h3 class="text-2xl font-bold text-white mb-4">The Solution</h3>
-                            <p id="modal-solution" class="text-lg leading-relaxed"></p>
+                            <h3 class="text-2xl font-bold text-white mb-3">Client Goals</h3>
+                            <p id="modal-goals" class="text-lg leading-relaxed text-gray-400"></p>
+                        </section>
+                        <section>
+                            <h3 class="text-2xl font-bold text-white mb-4">Problems Identified</h3>
+                            <ul id="modal-problems" class="space-y-3 text-gray-400">
+                                <!-- Populated by JS -->
+                            </ul>
+                        </section>
+                        <section>
+                            <h3 class="text-2xl font-bold text-white mb-3">Solution & Implementation</h3>
+                            <p id="modal-solution" class="text-lg leading-relaxed text-gray-400"></p>
+                        </section>
+                        <section>
+                            <h3 class="text-2xl font-bold text-white mb-3">Design Approach</h3>
+                            <p id="modal-design" class="text-lg leading-relaxed text-gray-400"></p>
                         </section>
                     </div>
                     <div class="space-y-8">
-                        <div class="p-8 glass">
-                            <h3 class="text-xl font-bold text-white mb-6">Key Results</h3>
-                            <ul id="modal-results" class="space-y-4"></ul>
+                        <!-- Premium Smartphone Video Showcase -->
+                        <div id="mobile-preview-container" class="p-6 rounded-[2rem] border border-white/5 bg-zinc-950/40 backdrop-blur-md flex flex-col items-center justify-center">
+                            <span class="text-xs uppercase font-extrabold tracking-[0.25em] text-purple-400 mb-6 block">Mobile Experience</span>
+                            <!-- iPhone/Modern Device Frame Mockup -->
+                            <div class="relative mx-auto border-[8px] border-zinc-800 rounded-[3rem] h-[520px] w-[245px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] overflow-hidden bg-black ring-1 ring-white/10">
+                                <!-- Gloss Reflection glass shine overlay -->
+                                <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none z-20"></div>
+                                <!-- Dynamic Notch / Island -->
+                                <div class="absolute top-2 left-1/2 -translate-x-1/2 w-[90px] h-[18px] bg-zinc-800 rounded-full z-30 flex items-center justify-between px-2">
+                                    <div class="w-1.5 h-1.5 bg-zinc-900 rounded-full"></div>
+                                    <div class="w-12 h-1 bg-zinc-900 rounded-full"></div>
+                                </div>
+                                <!-- Playable Video Component -->
+                                <video id="modal-video" class="w-full h-full object-cover relative z-10" autoplay loop muted playsinline preload="auto">
+                                    <source src="" type="video/mp4">
+                                </video>
+                            </div>
                         </div>
-                        <div class="p-8 glass">
-                            <h3 class="text-xl font-bold text-white mb-4">Stack Used</h3>
-                            <div id="modal-stack" class="flex flex-wrap gap-2"></div>
+
+                        <div class="p-8 glass border border-white/5 bg-zinc-950/40">
+                            <h3 class="text-xl font-bold text-white mb-6 tracking-wide uppercase">Results & Impact</h3>
+                            <ul id="modal-results" class="space-y-4">
+                                <!-- Populated by JS -->
+                            </ul>
+                        </div>
+                        <div class="p-8 glass border border-white/5 bg-zinc-950/40">
+                            <h3 class="text-xl font-bold text-white mb-4 tracking-wide uppercase">Stack Used</h3>
+                            <div id="modal-stack" class="flex flex-wrap gap-2">
+                                <!-- Populated by JS -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -278,52 +315,61 @@
                     <h3 class="text-purple-400 font-bold mb-4 uppercase tracking-widest">Selected Work</h3>
                     <h4 class="text-5xl font-extrabold">Shopify Excellence.</h4>
                 </div>
-                <p class="text-gray-400 max-w-md">Explore high-end e-commerce experiences built for speed and visual storytelling.</p>
+                <p class="text-gray-400 max-w-md">Explore premium flagship storefronts built for conversion, speed, and luxury brand storytelling.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12">
-                <div class="project-card group relative cursor-pointer reveal-up" data-project="urban-peak">
+                <!-- Project Card 1: Lumina Shades -->
+                <div class="project-card group relative cursor-pointer reveal-up" data-project="lumina-shades">
                     <div class="overflow-hidden rounded-3xl aspect-[16/10] bg-zinc-900 relative">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-8 flex flex-col justify-end">
-                            <p class="text-purple-400 font-bold mb-2">Fashion & Lifestyle</p>
-                            <h5 class="text-3xl font-bold mb-4">Urban Peak Store</h5>
-                            <button class="case-study-btn w-fit px-6 py-2 bg-white text-black rounded-full font-bold">Case Study</button>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-8 flex flex-col justify-end">
+                            <p class="text-purple-400 font-semibold mb-1 uppercase tracking-widest text-xs">Luxury Eyewear Store</p>
+                            <h5 class="text-3xl font-bold mb-2 text-white">Lumina Shades</h5>
+                            <p class="text-gray-300 text-sm mb-6 max-w-md line-clamp-2">Bespoke high-end digital flagship designed for premium optical collections with custom immersive 3D-feel visual showcases.</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-3 py-1 bg-white/10 rounded-full text-[10px] uppercase font-bold text-gray-300 tracking-wider">Shopify Development</span>
+                                <span class="px-3 py-1 bg-white/10 rounded-full text-[10px] uppercase font-bold text-gray-300 tracking-wider">UI/UX Customization</span>
+                                <span class="px-3 py-1 bg-white/10 rounded-full text-[10px] uppercase font-bold text-gray-300 tracking-wider">Responsive Design</span>
+                            </div>
+
+                            <div class="flex space-x-4">
+                                <button class="case-study-btn px-6 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-full font-bold text-xs transition-colors shadow-lg shadow-purple-600/30">View Case Study</button>
+                                <a href="https://luminashades.com/" target="_blank" rel="noopener noreferrer" class="live-link-btn px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-full font-bold text-xs border border-white/10 transition-colors flex items-center gap-1">
+                                    Live Website 
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                </a>
+                            </div>
                         </div>
-                        <div class="project-img w-full h-full bg-[url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center transition-transform duration-700"></div>
+                        <!-- LUXURY SUNGLASSES IMAGE (CRISP EYEWEAR DESIGN) -->
+                        <div class="project-img w-full h-full bg-[url('https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center transition-transform duration-700"></div>
                     </div>
                 </div>
 
-                <div class="project-card group relative cursor-pointer reveal-up" data-project="nexus">
+                <!-- Project Card 2: Mairaj Watches -->
+                <div class="project-card group relative cursor-pointer reveal-up" data-project="mairaj-watches">
                     <div class="overflow-hidden rounded-3xl aspect-[16/10] bg-zinc-900 relative">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-8 flex flex-col justify-end">
-                            <p class="text-blue-400 font-bold mb-2">Tech Accessories</p>
-                            <h5 class="text-3xl font-bold mb-4">Nexus Gadgets</h5>
-                            <button class="case-study-btn w-fit px-6 py-2 bg-white text-black rounded-full font-bold">Case Study</button>
-                        </div>
-                        <!-- CINEMATIC LIGHTING LAPTOP IMAGE (No logos) -->
-                        <div class="project-img w-full h-full bg-[url('https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center transition-transform duration-700"></div>
-                    </div>
-                </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-8 flex flex-col justify-end">
+                            <p class="text-blue-400 font-semibold mb-1 uppercase tracking-widest text-xs">Premium Horology Boutique</p>
+                            <h5 class="text-3xl font-bold mb-2 text-white">Mairaj Watches</h5>
+                            <p class="text-gray-300 text-sm mb-6 max-w-md line-clamp-2">Elite timepiece storefront with specialized specification matrices and tailored high-value payment workflows.</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-3 py-1 bg-white/10 rounded-full text-[10px] uppercase font-bold text-gray-300 tracking-wider">Shopify Development</span>
+                                <span class="px-3 py-1 bg-white/10 rounded-full text-[10px] uppercase font-bold text-gray-300 tracking-wider">UI/UX Customization</span>
+                                <span class="px-3 py-1 bg-white/10 rounded-full text-[10px] uppercase font-bold text-gray-300 tracking-wider">Responsive Design</span>
+                            </div>
 
-                <div class="project-card group relative cursor-pointer reveal-up" data-project="glow">
-                    <div class="overflow-hidden rounded-3xl aspect-[16/10] bg-zinc-900 relative">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-8 flex flex-col justify-end">
-                            <p class="text-pink-400 font-bold mb-2">Cosmetics</p>
-                            <h5 class="text-3xl font-bold mb-4">Glow Beauty</h5>
-                            <button class="case-study-btn w-fit px-6 py-2 bg-white text-black rounded-full font-bold">Case Study</button>
+                            <div class="flex space-x-4">
+                                <button class="case-study-btn px-6 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-full font-bold text-xs transition-colors shadow-lg shadow-purple-600/30">View Case Study</button>
+                                <a href="https://mairajwatches.com/" target="_blank" rel="noopener noreferrer" class="live-link-btn px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-full font-bold text-xs border border-white/10 transition-colors flex items-center gap-1">
+                                    Live Website 
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                </a>
+                            </div>
                         </div>
-                        <div class="project-img w-full h-full bg-[url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center transition-transform duration-700"></div>
-                    </div>
-                </div>
-
-                <div class="project-card group relative cursor-pointer reveal-up" data-project="pure">
-                    <div class="overflow-hidden rounded-3xl aspect-[16/10] bg-zinc-900 relative">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-8 flex flex-col justify-end">
-                            <p class="text-orange-400 font-bold mb-2">Eco-Friendly</p>
-                            <h5 class="text-3xl font-bold mb-4">Pure Living</h5>
-                            <button class="case-study-btn w-fit px-6 py-2 bg-white text-black rounded-full font-bold">Case Study</button>
-                        </div>
-                        <div class="project-img w-full h-full bg-[url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center transition-transform duration-700"></div>
+                        <!-- LUXURIOUS NAUTILUS STEEL/BLUE GLASS CLOSE-UP AD IMAGE -->
+                        <div class="project-img w-full h-full bg-[url('https://images.unsplash.com/photo-1639006570490-79c0c53f1080?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center transition-transform duration-700"></div>
                     </div>
                 </div>
             </div>
@@ -387,42 +433,51 @@
     </footer>
 
     <script>
+        // Data for Case Studies
         const projectData = {
-            'urban-peak': {
-                title: "Urban Peak Store",
-                category: "Fashion & Lifestyle",
-                img: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=800",
-                challenge: "The client was struggling with poor mobile performance and low conversion rates.",
-                solution: "Developed a custom 2.0 theme from scratch with progressive image loading.",
-                results: ["45% Increase in Mobile Conversion", "2.1s Page Load Speed", "30% Higher AOV"],
-                stack: ["Liquid", "Tailwind CSS", "Vanilla JS"]
+            'lumina-shades': {
+                title: "Lumina Shades",
+                category: "Luxury Eyewear Store",
+                img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800",
+                overview: "Lumina Shades is a high-end, luxury eyewear brand that required a digital flagship storefront reflecting its boutique retail prestige. The store focuses on sleek product aesthetics and high-ticket customer conversion.",
+                goals: "To transition Lumina Shades into an elite luxury brand shopping experience. The main objective was to refine the UI hierarchy, elevate product imagery, build responsive custom-coded Shopify sections, and drastically increase mobile checkout conversion rates.",
+                problems: [
+                    "Weak product presentation that failed to convey premium eyewear craftsmanship.",
+                    "Lack of clear, cohesive luxury branding across collection pages.",
+                    "Unoptimized mobile product layouts causing high cart abandonment rates.",
+                    "Inflexible off-the-shelf theme layout lacking custom interactive sections."
+                ],
+                solution: "Engineered a completely custom Shopify OS 2.0 theme. Implemented conversion-focused custom sections, dynamic video-first product galleries, a refined visual grid hierarchy, and tailored Shopify cart drawer enhancements to minimize friction.",
+                design: "The aesthetic is defined by minimalist luxury UI. We utilized ample clean spacing, elegant typography hierarchy, and a black-and-white high-contrast design system that lets the eyewear products shine as the focal point.",
+                stack: ["Shopify OS 2.0", "Liquid", "JavaScript (ES6)", "Tailwind CSS", "HTML5"],
+                results: [
+                    "Enhanced user experience leading to +34% average session duration.",
+                    "Significantly improved product collection visibility and browsing flow.",
+                    "Fully optimized mobile-first checkout layout reducing drop-offs by 28%.",
+                    "A highly professional, premium storefront that commands a high Average Order Value."
+                ]
             },
-            'nexus': {
-                title: "Nexus Gadgets",
-                category: "Tech Accessories",
-                img: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&q=80&w=800",
-                challenge: "Required a complex product configurator for 500+ potential tech combinations.",
-                solution: "Built a custom Vue.js configurator injected into Liquid using Metafields.",
-                results: ["Zero-friction UX for 500+ variants", "85% reduction in support tickets", "Seamless fulfillment sync"],
-                stack: ["Liquid", "Vue.js", "Shopify API"]
-            },
-            'glow': {
-                title: "Glow Beauty",
-                category: "Cosmetics",
-                img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=800",
-                challenge: "Needed a native skin-type quiz without relying on slow third-party apps.",
-                solution: "Coded a native quiz directly into theme files for dynamic product reordering.",
-                results: ["52% increase in cross-sales", "100/100 Speed Score", "No monthly app costs"],
-                stack: ["Liquid", "SCSS", "JS Session Storage"]
-            },
-            'pure': {
-                title: "Pure Living",
-                category: "Eco-Friendly",
-                img: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
-                challenge: "Wanted a 'Sustainability Dashboard' to show carbon impact on every product.",
-                solution: "Implemented custom calculation engine and interactive SVG map visualization.",
-                results: ["Stronger brand trust scores", "22% boost in repeat customers", "Design feature on Shopify blog"],
-                stack: ["Liquid", "GSAP", "SVG Animation"]
+            'mairaj-watches': {
+                title: "Mairaj Watches",
+                category: "Premium Horology Boutique",
+                img: "https://images.unsplash.com/photo-1639006570490-79c0c53f1080?auto=format&fit=crop&q=80&w=800",
+                overview: "Mairaj Watches is an upscale timepiece boutique specializing in high-value, luxury watches. They required an authoritative, high-performance online flagship store matching the precision of their horological assets.",
+                goals: "Establish a visually stunning, secure, and conversion-optimized digital environment. The priority was custom Shopify theme customization that presents luxury watches in exquisite detail while ensuring lightning-fast performance.",
+                problems: [
+                    "Poor UI hierarchy which buried product specifications and technical clockwork details.",
+                    "Lack of premium, trustworthy branding for high-value transactions ($10k+).",
+                    "Unoptimized mobile layout that hindered high-end buyers on smartphones.",
+                    "Slow product image load times due to uncompressed, heavy visual assets."
+                ],
+                solution: "Coded custom Shopify Liquid templates designed for extreme asset performance. Redesigned the specification grids natively to highlight precision watch craftsmanship, structured premium cart journeys, and embedded high-speed progressive imagery systems.",
+                design: "A deep charcoal and soft gold luxury aesthetic, clean typographic hierarchy, structured grids, and ultra-high-definition product galleries focusing heavily on close-up detail macro shots.",
+                stack: ["Shopify OS 2.0", "Liquid", "Tailwind CSS", "JavaScript (ES6)", "GraphQL"],
+                results: [
+                    "Substantial upgrade in brand authority and trust perception metrics.",
+                    "Uncompromisingly responsive layouts optimized perfectly for tablets and mobile devices.",
+                    "42% increase in product specification page interactions.",
+                    "Rapid 1.8s page speed index for premium media-rich environments."
+                ]
             }
         };
 
@@ -450,11 +505,45 @@
             if(!data) return;
             document.getElementById('modal-title').innerText = data.title;
             document.getElementById('modal-category').innerText = data.category;
-            document.getElementById('modal-challenge').innerText = data.challenge;
-            document.getElementById('modal-solution').innerText = data.solution;
+            
+            document.getElementById('modal-overview').innerText = data.overview || "";
+            document.getElementById('modal-goals').innerText = data.goals || "";
+            document.getElementById('modal-solution').innerText = data.solution || "";
+            document.getElementById('modal-design').innerText = data.design || "Modern, luxury aesthetic structured around product photography.";
             document.getElementById('modal-image').style.backgroundImage = `url('${data.img}')`;
-            document.getElementById('modal-results').innerHTML = data.results.map(r => `<li class="flex items-start space-x-3"><span class="text-purple-500 font-bold mt-1">✓</span><span>${r}</span></li>`).join('');
-            document.getElementById('modal-stack').innerHTML = data.stack.map(s => `<span class="px-3 py-1 bg-white/10 rounded-full text-xs font-bold">${s}</span>`).join('');
+            
+            const probList = document.getElementById('modal-problems');
+            if (data.problems) {
+                probList.innerHTML = data.problems.map(p => `<li class="flex items-start space-x-3"><span class="text-purple-500 font-bold mt-1">•</span><span class="text-lg leading-relaxed text-gray-400">${p}</span></li>`).join('');
+            }
+
+            const resList = document.getElementById('modal-results');
+            resList.innerHTML = data.results.map(r => `<li class="flex items-start space-x-3"><span class="text-purple-500 font-bold mt-1">✓</span><span>${r}</span></li>`).join('');
+            
+            const stackDiv = document.getElementById('modal-stack');
+            stackDiv.innerHTML = data.stack.map(s => `<span class="px-3 py-1 bg-white/10 rounded-full text-xs font-bold">${s}</span>`).join('');
+            
+            // Set dynamic video source inside smartphone mockup based on active project
+            const videoEl = document.getElementById('modal-video');
+            const previewContainer = document.getElementById('mobile-preview-container');
+            
+            if (projectId === 'lumina-shades') {
+                previewContainer.style.display = 'flex';
+                // Load actual playable local video stream for Lumina Shades
+                videoEl.src = "https://drive.google.com/file/d/10pH296SF0LakuO_vSWVXwO9za3vEFpzp/view?usp=sharing";
+                videoEl.load();
+                videoEl.play().catch(e => console.log("Video playback prevented:", e));
+            } else if (projectId === 'mairaj-watches') {
+                previewContainer.style.display = 'flex';
+                // Load actual playable local video stream for Mairaj Watches
+                videoEl.src = "https://drive.google.com/file/d/18NPTrFRtQ--87e5Mja9H1-zXkmgf_amo/view?usp=sharing";
+                videoEl.load();
+                videoEl.play().catch(e => console.log("Video playback prevented:", e));
+            } else {
+                previewContainer.style.display = 'none';
+                videoEl.src = "";
+            }
+
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
             gsap.to('#modal-content', { opacity: 1, y: 0, duration: 0.8, delay: 0.2, ease: "power4.out" });
@@ -464,11 +553,18 @@
             gsap.to('#modal-content', { opacity: 0, y: 30, duration: 0.5, onComplete: () => {
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
+                
+                // Clear source to halt stream playback
+                const videoEl = document.getElementById('modal-video');
+                videoEl.src = "";
             }});
         };
 
         document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('click', () => openCaseStudy(card.getAttribute('data-project')));
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.live-link-btn')) return; 
+                openCaseStudy(card.getAttribute('data-project'));
+            });
         });
 
         gsap.registerPlugin(ScrollTrigger);
