@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zaifullah | Shopify Architect</title>
-   
-    <!-- Premium Favicon -->
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><defs><linearGradient id=%22grad%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%2322d3ee%22/><stop offset=%22100%25%22 stop-color=%22%237c3aed%22/></linearGradient></defs><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23111111%22 stroke=%22url(%23grad)%22 stroke-width=%228%22/><text y=%2268%22 x=%2250%25%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2265%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 fill=%22white%22>Z</text></svg>">
-   
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-   
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-   
+
     <style>
         :root {
             --primary: #7c3aed;
             --secondary: #22d3ee;
         }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: #050505;
@@ -27,8 +27,10 @@
             overflow-x: hidden;
             cursor: none;
         }
+
         #cursor {
-            width: 26px; height: 26px;
+            width: 26px;
+            height: 26px;
             border: 2px solid #22d3ee;
             border-radius: 50%;
             position: fixed;
@@ -36,301 +38,668 @@
             pointer-events: none;
             mix-blend-mode: difference;
         }
+
         #cursor-blur {
-            width: 200px; height: 200px;
+            width: 200px;
+            height: 200px;
             background: radial-gradient(circle, rgba(34,211,238,0.25) 0%, transparent 70%);
             filter: blur(50px);
             position: fixed;
             z-index: 9998;
             pointer-events: none;
         }
+
         .glass {
             background: rgba(255,255,255,0.05);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.1);
         }
+
         .gradient-text {
             background: linear-gradient(90deg, #22d3ee, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
         .project-card:hover {
             transform: translateY(-25px);
         }
+
+        .project-card .p-8 {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .project-card .buttons {
+            margin-top: auto;
+        }
+
         .project-image {
             transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .project-card:hover .project-image {
             transform: scale(1.13);
         }
-
-        /* Fixed Contact Section */
-        #contact .contact-card {
-            max-width: 520px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        @media (max-width: 640px) {
-            #contact .contact-card {
-                padding: 2.5rem 1.5rem;
-                margin: 0 1rem;
-            }
-            #contact h4 {
-                font-size: 2.1rem;
-                line-height: 1.2;
-            }
-        }
     </style>
 </head>
+
 <body>
-    <div id="cursor"></div>
-    <div id="cursor-blur"></div>
-    <canvas id="hero-3d" class="fixed inset-0 z-[-1] opacity-40 pointer-events-none"></canvas>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
-            <div class="text-3xl font-black tracking-tighter">ZAIF<span class="text-teal-400">ULLAH</span></div>
-            <div class="hidden md:flex gap-10 text-sm font-medium uppercase tracking-widest">
-                <a href="#about" class="hover:text-teal-400 transition-colors">Story</a>
-                <a href="#mastery" class="hover:text-teal-400 transition-colors">Mastery</a>
-                <a href="#expertise" class="hover:text-teal-400 transition-colors">Expertise</a>
-                <a href="#work" class="hover:text-teal-400 transition-colors">Work</a>
-                <a href="#pricing" class="hover:text-teal-400 transition-colors">Pricing</a>
-                <a href="#contact" class="hover:text-teal-400 transition-colors">Contact</a>
-            </div>
-            <a href="#contact" class="px-8 py-3.5 bg-white text-black font-semibold rounded-3xl hover:bg-amber-400 transition-all">Start Project</a>
+<div id="cursor"></div>
+<div id="cursor-blur"></div>
+<canvas id="hero-3d" class="fixed inset-0 z-[-1] opacity-40 pointer-events-none"></canvas>
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 py-5 flex items-center justify-between gap-6">
+
+        <div class="text-3xl font-black tracking-tighter">
+            ZAIF<span class="text-teal-400">ULLAH</span>
         </div>
-    </nav>
 
-    <!-- Hero -->
-    <section class="relative min-h-screen flex items-center justify-center pt-20">
-        <div class="max-w-4xl mx-auto text-center px-8">
-            <div class="inline px-6 py-3 bg-white/10 rounded-3xl text-sm mb-8">Shopify Architect</div>
-            <h1 class="text-6xl md:text-8xl font-extrabold leading-none">
-                Hi, I'm <span class="gradient-text">Zaifullah</span>
-            </h1>
-            <p class="text-2xl text-gray-400 mt-8 max-w-2xl mx-auto">
-                I craft premium, high-converting Shopify stores that blend beautiful design with powerful performance.
-            </p>
-            <div class="mt-12 flex flex-col sm:flex-row gap-5 justify-center">
-                <a href="#work" class="px-12 py-6 bg-violet-600 rounded-3xl font-bold text-lg hover:bg-violet-700 transition-all">View My Work</a>
-                <a href="#pricing" class="px-12 py-6 glass rounded-3xl font-bold text-lg hover:bg-white/10 transition-all">See Pricing</a>
-            </div>
+        <div class="hidden md:flex gap-10 text-sm font-medium uppercase tracking-widest">
+            <a href="#about" class="hover:text-teal-400 transition-colors">Story</a>
+            <a href="#mastery" class="hover:text-teal-400 transition-colors">Mastery</a>
+            <a href="#expertise" class="hover:text-teal-400 transition-colors">Expertise</a>
+            <a href="#work" class="hover:text-teal-400 transition-colors">Work</a>
+            <a href="#pricing" class="hover:text-teal-400 transition-colors">Pricing</a>
+            <a href="#contact" class="hover:text-teal-400 transition-colors">Contact</a>
         </div>
-    </section>
 
-    <!-- Mastery -->
-    <section id="mastery" class="py-32 px-8">
-        <div class="max-w-5xl mx-auto text-center">
-            <div class="inline-flex items-center gap-3 bg-white/10 px-6 py-3 rounded-3xl mb-8">
-                <span class="text-3xl">✦</span>
-                <span class="uppercase tracking-widest font-bold text-teal-400">Mastery</span>
-            </div>
-            <h2 class="text-6xl md:text-7xl font-extrabold leading-none mb-6">3+ Years of Mastery</h2>
-            <p class="text-xl text-gray-400 max-w-2xl mx-auto">Turning vision into high-converting Shopify experiences since 2022</p>
+        <a href="#contact"
+           class="px-8 py-3.5 bg-white text-black font-semibold rounded-3xl hover:bg-amber-400 transition-all whitespace-nowrap">
+            Start Project
+        </a>
+    </div>
+</nav>
 
-            <div class="grid md:grid-cols-3 gap-8 mt-20">
-                <div class="glass p-12 rounded-3xl">
-                    <div class="text-7xl font-bold text-violet-400 mb-4">3+</div>
-                    <div class="text-2xl font-semibold">Years Experience</div>
-                    <p class="text-gray-400 mt-6">Deep expertise in Shopify architecture and conversion optimization</p>
-                </div>
-                <div class="glass p-12 rounded-3xl">
-                    <div class="text-7xl font-bold text-teal-400 mb-4">20+</div>
-                    <div class="text-2xl font-semibold">Stores Delivered</div>
-                    <p class="text-gray-400 mt-6">Premium custom themes for luxury and high-volume brands</p>
-                </div>
-                <div class="glass p-12 rounded-3xl">
-                    <div class="text-7xl font-bold text-amber-400 mb-4">100%</div>
-                    <div class="text-2xl font-semibold">Client Satisfaction</div>
-                    <p class="text-gray-400 mt-6">Long-term partnerships built on trust and results</p>
-                </div>
-            </div>
+<!-- HERO -->
+<section class="relative min-h-screen flex items-center justify-center pt-20">
+    <div class="max-w-4xl mx-auto text-center px-8">
+
+        <div class="inline px-6 py-3 bg-white/10 rounded-3xl text-sm mb-8">
+            Shopify Architect
         </div>
-    </section>
 
-    <!-- About -->
-    <section id="about" class="py-32 px-8 bg-zinc-950">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
-            <div>
-                <h3 class="text-teal-400 uppercase tracking-widest font-bold">My Story</h3>
-                <h4 class="text-5xl font-extrabold mt-6 leading-tight">Beyond the Code</h4>
-                <p class="text-lg text-gray-400 mt-8">I build custom Shopify solutions from scratch — fast, beautiful, and built to drive revenue.</p>
-            </div>
-            <div class="space-y-6">
-                <p class="text-gray-400">I don't just install themes. I architect complete digital experiences that convert visitors into loyal customers.</p>
-            </div>
-        </div>
-    </section>
+        <h1 class="text-6xl md:text-8xl font-extrabold leading-none">
+            Hi, I'm <span class="gradient-text">Zaifullah</span>
+        </h1>
 
-    <!-- Expertise -->
-    <section id="expertise" class="py-32 px-8">
-        <div class="max-w-7xl mx-auto text-center">
-            <h3 class="text-violet-400 uppercase tracking-widest font-bold">What I Work With</h3>
-            <h4 class="text-5xl font-extrabold mt-4 mb-16">My Technical Arsenal</h4>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-                <div class="skill-card glass p-10 rounded-3xl text-center">🛒<br><span class="font-bold mt-4 block">Shopify</span></div>
-                <div class="skill-card glass p-10 rounded-3xl text-center">💧<br><span class="font-bold mt-4 block">Liquid</span></div>
-                <div class="skill-card glass p-10 rounded-3xl text-center">⚡<br><span class="font-bold mt-4 block">JavaScript</span></div>
-                <div class="skill-card glass p-10 rounded-3xl text-center">🎨<br><span class="font-bold mt-4 block">Tailwind</span></div>
-                <div class="skill-card glass p-10 rounded-3xl text-center">📐<br><span class="font-bold mt-4 block">HTML / CSS</span></div>
-                <div class="skill-card glass p-10 rounded-3xl text-center">🔗<br><span class="font-bold mt-4 block">GraphQL</span></div>
-            </div>
-        </div>
-    </section>
+        <p class="text-2xl text-gray-400 mt-8 max-w-2xl mx-auto">
+            I craft premium, high-converting Shopify stores that blend beautiful design with powerful performance.
+        </p>
 
-    <!-- Work -->
-    <section id="work" class="py-32 px-8 bg-zinc-950">
-        <div class="max-w-7xl mx-auto">
-            <h3 id="work-heading" class="text-teal-400 uppercase tracking-widest font-bold text-center">Featured Work</h3>
-            <h4 class="text-5xl font-extrabold text-center mt-4 mb-16">Selected Projects</h4>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="project-card group glass rounded-3xl overflow-hidden cursor-pointer" data-project="lumina-shades">
-                    <div class="relative h-96 overflow-hidden">
-                        <div class="project-image h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=1200')"></div>
-                        <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                    </div>
-                    <div class="p-8">
-                        <p class="text-teal-400 text-sm font-bold">LUXURY EYEWEAR</p>
-                        <h5 class="text-3xl font-bold mt-2">Lumina Shades</h5>
-                        <div class="flex gap-4 mt-8">
-                            <button class="case-study-btn px-8 py-4 bg-violet-600 rounded-3xl text-sm font-semibold">Case Study</button>
-                            <a href="https://luminashades.com/" target="_blank" class="px-8 py-4 border border-white/30 rounded-3xl text-sm font-semibold hover:bg-white/10">Live Site ↗</a>
-                        </div>
-                    </div>
-                </div>
+        <div class="mt-12 flex flex-col sm:flex-row gap-5 justify-center items-center">
 
-                <div class="project-card group glass rounded-3xl overflow-hidden cursor-pointer" data-project="mairaj-watches">
-                    <div class="relative h-96 overflow-hidden">
-                        <div class="project-image h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1639006570490-79c0c53f1080?auto=format&fit=crop&q=80&w=1200')"></div>
-                        <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                    </div>
-                    <div class="p-8">
-                        <p class="text-teal-400 text-sm font-bold">PREMIUM HOROLOGY</p>
-                        <h5 class="text-3xl font-bold mt-2">Mairaj Watches</h5>
-                        <div class="flex gap-4 mt-8">
-                            <button class="case-study-btn px-8 py-4 bg-violet-600 rounded-3xl text-sm font-semibold">Case Study</button>
-                            <a href="https://mairajwatches.com/" target="_blank" class="px-8 py-4 border border-white/30 rounded-3xl text-sm font-semibold hover:bg-white/10">Live Site ↗</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <a href="#work"
+               class="px-12 py-6 bg-violet-600 rounded-3xl font-bold text-lg hover:bg-violet-700 transition-all w-full sm:w-auto text-center">
+                View My Work
+            </a>
 
-    <!-- Pricing -->
-    <section id="pricing" class="py-32 px-8 bg-zinc-950">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h3 class="text-teal-400 uppercase tracking-widest font-bold">Pricing</h3>
-                <h2 class="text-5xl md:text-6xl font-extrabold mt-4">Choose Your Package</h2>
-                <p class="text-gray-400 mt-6 max-w-2xl mx-auto text-lg">Professional Shopify Store Development packages tailored for your business growth.</p>
-            </div>
-            <!-- Pricing cards (same as before) -->
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Basic, Standard, Premium cards here (same as previous response) -->
-                <!-- ... (I kept it short for brevity, but they are included) ... -->
-            </div>
-        </div>
-    </section>
+            <a href="#pricing"
+               class="px-12 py-6 glass rounded-3xl font-bold text-lg hover:bg-white/10 transition-all w-full sm:w-auto text-center">
+                See Pricing
+            </a>
 
-    <!-- Fixed Contact Section -->
-    <section id="contact" class="py-32 px-8 bg-zinc-950 relative z-10">
-        <div class="max-w-4xl mx-auto contact-card">
-            <div class="glass p-8 md:p-16 rounded-3xl text-center">
-                <h4 class="text-4xl md:text-5xl font-extrabold mb-10 leading-tight">Let's Build Something Legendary</h4>
-                
-                <a href="mailto:zaifullah1727@gmail.com" 
-                   class="text-2xl md:text-3xl hover:text-teal-400 transition-colors block mb-12 break-words px-4">
-                    zaifullah1727@gmail.com
-                </a>
-               
-                <div class="flex justify-center gap-6">
-                    <a href="https://www.linkedin.com/in/zaif-ullah-02aa52388" target="_blank" 
-                       class="glass w-14 h-14 md:w-16 md:h-16 rounded-3xl flex items-center justify-center text-3xl hover:bg-blue-600 transition-all">in</a>
-                    <a href="https://www.instagram.com/shopify.zaifullah/" target="_blank" 
-                       class="glass w-14 h-14 md:w-16 md:h-16 rounded-3xl flex items-center justify-center text-3xl hover:bg-pink-600 transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Case Study Modal -->
-    <div id="case-study-modal" class="hidden fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl overflow-y-auto">
-        <div class="max-w-4xl mx-auto py-20 px-6 relative">
-            <button id="close-modal" class="fixed top-8 right-8 text-4xl w-16 h-16 glass rounded-3xl flex items-center justify-center hover:bg-white hover:text-black">✕</button>
-            <div id="modal-content" class="opacity-0 translate-y-12">
-                <h2 id="modal-title" class="text-5xl font-bold"></h2>
-                <p id="modal-category" class="text-teal-400 mt-3"></p>
-                <div class="grid md:grid-cols-2 gap-10 mt-12">
-                    <div>
-                        <h3 class="text-xl font-semibold mb-4">Overview</h3>
-                        <p id="modal-overview" class="text-gray-400"></p>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-4">Solution</h3>
-                        <p id="modal-solution" class="text-gray-400"></p>
-                    </div>
-                </div>
-                <div class="mt-10">
-                    <h3 class="text-xl font-semibold mb-4">Results</h3>
-                    <ul id="modal-results" class="space-y-3"></ul>
-                </div>
-                <div class="mt-10">
-                    <h3 class="text-xl font-semibold mb-4">Tech Stack</h3>
-                    <div id="modal-stack" class="flex flex-wrap gap-3"></div>
-                </div>
-            </div>
         </div>
     </div>
+</section>
 
-    <script>
-        let scene, camera, renderer, knot;
-        function init3D() {
-            const canvas = document.getElementById('hero-3d');
-            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
-            camera.position.z = 35;
+<!-- MASTERY -->
+<section id="mastery" class="py-32 px-8">
+    <div class="max-w-5xl mx-auto text-center">
 
-            const light1 = new THREE.PointLight(0x22d3ee, 4);
-            light1.position.set(25, 25, 30);
-            scene.add(light1);
+        <div class="inline-flex items-center gap-3 bg-white/10 px-6 py-3 rounded-3xl mb-8">
+            <span class="text-3xl">✦</span>
+            <span class="uppercase tracking-widest font-bold text-teal-400">Mastery</span>
+        </div>
 
-            const light2 = new THREE.PointLight(0x7c3aed, 3);
-            light2.position.set(-25, -15, 20);
-            scene.add(light2);
+        <h2 class="text-6xl md:text-7xl font-extrabold leading-none mb-6">
+            3+ Years of Mastery
+        </h2>
 
-            const geometry = new THREE.TorusKnotGeometry(11, 3.2, 200, 32, 3, 7);
-            const material = new THREE.MeshPhongMaterial({ color: 0x7c3aed, emissive: 0x4c1d95, shininess: 120 });
-            knot = new THREE.Mesh(geometry, material);
-            scene.add(knot);
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            Turning vision into high-converting Shopify experiences since 2022
+        </p>
 
-            function animate() {
-                requestAnimationFrame(animate);
-                knot.rotation.x += 0.004;
-                knot.rotation.y += 0.007;
-                renderer.render(scene, camera);
-            }
-            animate();
-        }
+        <div class="grid md:grid-cols-3 gap-8 mt-20">
 
-        document.addEventListener('mousemove', (e) => {
-            gsap.to("#cursor", {x: e.clientX - 13, y: e.clientY - 13, duration: 0.1});
-            gsap.to("#cursor-blur", {x: e.clientX - 100, y: e.clientY - 100, duration: 0.4});
-        });
+            <div class="glass p-12 rounded-3xl">
+                <div class="text-7xl font-bold text-violet-400 mb-4">3+</div>
+                <div class="text-2xl font-semibold">Years Experience</div>
+                <p class="text-gray-400 mt-6">
+                    Deep expertise in Shopify architecture and conversion optimization
+                </p>
+            </div>
 
-        window.onload = () => {
-            init3D();
-            gsap.registerPlugin(ScrollTrigger);
-        };
-    </script>
+            <div class="glass p-12 rounded-3xl">
+                <div class="text-7xl font-bold text-teal-400 mb-4">20+</div>
+                <div class="text-2xl font-semibold">Stores Delivered</div>
+                <p class="text-gray-400 mt-6">
+                    Premium custom themes for luxury and high-volume brands
+                </p>
+            </div>
+
+            <div class="glass p-12 rounded-3xl">
+                <div class="text-7xl font-bold text-amber-400 mb-4">100%</div>
+                <div class="text-2xl font-semibold">Client Satisfaction</div>
+                <p class="text-gray-400 mt-6">
+                    Long-term partnerships built on trust and results
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-32 px-8 bg-zinc-950">
+
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+        <div>
+            <h3 class="text-teal-400 uppercase tracking-widest font-bold">
+                My Story
+            </h3>
+
+            <h4 class="text-5xl font-extrabold mt-6 leading-tight">
+                Beyond the Code
+            </h4>
+
+            <p class="text-lg text-gray-400 mt-8">
+                I build custom Shopify solutions from scratch — fast, beautiful, and built to drive revenue.
+            </p>
+        </div>
+
+        <div class="space-y-6">
+            <p class="text-gray-400">
+                I don't just install themes. I architect complete digital experiences that convert visitors into loyal customers.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise" class="py-32 px-8">
+
+    <div class="max-w-7xl mx-auto text-center">
+
+        <h3 class="text-violet-400 uppercase tracking-widest font-bold">
+            What I Work With
+        </h3>
+
+        <h4 class="text-5xl font-extrabold mt-4 mb-16">
+            My Technical Arsenal
+        </h4>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+
+            <div class="skill-card glass p-10 rounded-3xl text-center">
+                🛒<br><span class="font-bold mt-4 block">Shopify</span>
+            </div>
+
+            <div class="skill-card glass p-10 rounded-3xl text-center">
+                💧<br><span class="font-bold mt-4 block">Liquid</span>
+            </div>
+
+            <div class="skill-card glass p-10 rounded-3xl text-center">
+                ⚡<br><span class="font-bold mt-4 block">JavaScript</span>
+            </div>
+
+            <div class="skill-card glass p-10 rounded-3xl text-center">
+                🎨<br><span class="font-bold mt-4 block">Tailwind</span>
+            </div>
+
+            <div class="skill-card glass p-10 rounded-3xl text-center">
+                📐<br><span class="font-bold mt-4 block">HTML / CSS</span>
+            </div>
+
+            <div class="skill-card glass p-10 rounded-3xl text-center">
+                🔗<br><span class="font-bold mt-4 block">GraphQL</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="py-32 px-8 bg-zinc-950">
+
+    <div class="max-w-7xl mx-auto">
+
+        <h3 class="text-teal-400 uppercase tracking-widest font-bold text-center">
+            Featured Work
+        </h3>
+
+        <h4 class="text-5xl font-extrabold text-center mt-4 mb-16">
+            Selected Projects
+        </h4>
+
+        <div class="grid md:grid-cols-2 gap-10 xl:gap-12 items-stretch">
+
+            <!-- PROJECT 1 -->
+            <div class="project-card group glass rounded-3xl overflow-hidden cursor-pointer">
+
+                <div class="relative h-96 overflow-hidden">
+                    <div class="project-image h-full bg-cover bg-center"
+                         style="background-image:url('https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=1200')">
+                    </div>
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                </div>
+
+                <div class="p-8">
+
+                    <div>
+                        <p class="text-teal-400 text-sm font-bold">LUXURY EYEWEAR</p>
+
+                        <h5 class="text-3xl font-bold mt-2">
+                            Lumina Shades
+                        </h5>
+                    </div>
+
+                    <div class="buttons flex flex-col sm:flex-row gap-4 mt-8">
+
+                        <button class="px-8 py-4 bg-violet-600 rounded-3xl text-sm font-semibold">
+                            Case Study
+                        </button>
+
+                        <a href="https://luminashades.com/"
+                           target="_blank"
+                           class="px-8 py-4 border border-white/30 rounded-3xl text-sm font-semibold hover:bg-white/10 text-center">
+                            Live Site ↗
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PROJECT 2 -->
+            <div class="project-card group glass rounded-3xl overflow-hidden cursor-pointer">
+
+                <div class="relative h-96 overflow-hidden">
+
+                    <div class="project-image h-full bg-cover bg-center"
+                         style="background-image:url('https://images.unsplash.com/photo-1639006570490-79c0c53f1080?auto=format&fit=crop&q=80&w=1200')">
+                    </div>
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                </div>
+
+                <div class="p-8">
+
+                    <div>
+                        <p class="text-teal-400 text-sm font-bold">PREMIUM HOROLOGY</p>
+
+                        <h5 class="text-3xl font-bold mt-2">
+                            Mairaj Watches
+                        </h5>
+                    </div>
+
+                    <div class="buttons flex flex-col sm:flex-row gap-4 mt-8">
+
+                        <button class="px-8 py-4 bg-violet-600 rounded-3xl text-sm font-semibold">
+                            Case Study
+                        </button>
+
+                        <a href="https://mairajwatches.com/"
+                           target="_blank"
+                           class="px-8 py-4 border border-white/30 rounded-3xl text-sm font-semibold hover:bg-white/10 text-center">
+                            Live Site ↗
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+<!-- PRICING SECTION -->
+<section id="pricing" class="py-32 px-8 bg-zinc-950">
+
+    <div class="max-w-7xl mx-auto">
+
+        <div class="text-center mb-16">
+
+            <h3 class="text-teal-400 uppercase tracking-widest font-bold">
+                Pricing
+            </h3>
+
+            <h2 class="text-5xl md:text-6xl font-extrabold mt-4">
+                Choose Your Package
+            </h2>
+
+            <p class="text-gray-400 mt-6 max-w-2xl mx-auto text-lg">
+                Professional Shopify Store Development packages tailored for your business growth.
+            </p>
+
+        </div>
+
+        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 items-stretch">
+
+            <!-- STARTER -->
+            <div class="glass rounded-3xl p-8 hover:scale-105 transition-all duration-300 flex flex-col">
+
+                <div class="text-center">
+
+                    <p class="text-sm uppercase tracking-widest text-gray-400">
+                        Starter
+                    </p>
+
+                    <h4 class="text-4xl font-bold mt-4">
+                        Starter Shopify Store
+                    </h4>
+
+                    <div class="mt-6 mb-8">
+                        <span class="text-5xl font-bold">$100</span>
+                    </div>
+
+                </div>
+
+                <ul class="space-y-4 text-gray-300 flex-1">
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Shopify store setup
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Free theme customization
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Mobile responsive design
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Up to 10 product uploads
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Essential pages setup
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Payment & Shipping setup
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Domain connection
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Basic SEO setup
+                    </li>
+
+                </ul>
+
+                <div class="mt-8 pt-6 border-t border-white/10 text-sm text-gray-400">
+                    <p><strong>Delivery:</strong> 3 days</p>
+                    <p><strong>Revisions:</strong> 2</p>
+                </div>
+
+                <a href="mailto:zaifullah1727@gmail.com?subject=Basic%20Package%20Inquiry"
+                   class="block mt-8 text-center py-4 bg-white/10 hover:bg-white/20 rounded-2xl font-semibold transition-all">
+                    Get Started
+                </a>
+
+            </div>
+
+            <!-- PROFESSIONAL -->
+            <div class="glass rounded-3xl p-8 relative hover:scale-105 transition-all duration-300 border border-violet-500/30 flex flex-col">
+
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-violet-600 text-white text-xs font-bold px-6 py-1.5 rounded-full">
+                    MOST POPULAR
+                </div>
+
+                <div class="text-center">
+
+                    <p class="text-sm uppercase tracking-widest text-gray-400">
+                        Professional
+                    </p>
+
+                    <h4 class="text-4xl font-bold mt-4">
+                        Professional Shopify Store
+                    </h4>
+
+                    <div class="mt-6 mb-8">
+                        <span class="text-5xl font-bold">$300</span>
+                    </div>
+
+                </div>
+
+                <ul class="space-y-4 text-gray-300 flex-1">
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Everything in Starter
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Premium theme customization
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Up to 30 product uploads
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Branded homepage design
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Product page optimization
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Speed & SEO optimization
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Shopify apps integration
+                    </li>
+
+                </ul>
+
+                <div class="mt-8 pt-6 border-t border-white/10 text-sm text-gray-400">
+                    <p><strong>Delivery:</strong> 5 days</p>
+                    <p><strong>Revisions:</strong> 5</p>
+                </div>
+
+                <a href="mailto:zaifullah1727@gmail.com?subject=Standard%20Package%20Inquiry"
+                   class="block mt-8 text-center py-4 bg-violet-600 hover:bg-violet-700 rounded-2xl font-semibold transition-all">
+                    Get Started
+                </a>
+
+            </div>
+
+            <!-- ADVANCED -->
+            <div class="glass rounded-3xl p-8 hover:scale-105 transition-all duration-300 flex flex-col">
+
+                <div class="text-center">
+
+                    <p class="text-sm uppercase tracking-widest text-gray-400">
+                        Advanced
+                    </p>
+
+                    <h4 class="text-4xl font-bold mt-4">
+                        Advanced Shopify Store
+                    </h4>
+
+                    <div class="mt-6 mb-8">
+                        <span class="text-5xl font-bold">$500</span>
+                    </div>
+
+                </div>
+
+                <ul class="space-y-4 text-gray-300 flex-1">
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Everything in Professional
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Advanced homepage design
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Up to 70 product uploads
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Conversion-focused structure
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Custom banners & design
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Full SEO optimization
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Live chat integration
+                    </li>
+
+                    <li class="flex gap-3">
+                        <span class="text-emerald-400">✓</span>
+                        Priority support
+                    </li>
+
+                </ul>
+
+                <div class="mt-8 pt-6 border-t border-white/10 text-sm text-gray-400">
+                    <p><strong>Delivery:</strong> 7 days</p>
+                    <p><strong>Revisions:</strong> Unlimited</p>
+                </div>
+
+                <a href="mailto:zaifullah1727@gmail.com?subject=Premium%20Package%20Inquiry"
+                   class="block mt-8 text-center py-4 bg-white/10 hover:bg-white/20 rounded-2xl font-semibold transition-all">
+                    Get Started
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="text-center mt-16">
+
+            <p class="text-gray-400 mb-4">
+                After purchase, I will receive your order and contact you shortly at zaifullah1727@gmail.com
+            </p>
+
+            <a href="#contact"
+               class="inline-block px-10 py-5 bg-white text-black font-semibold rounded-3xl hover:bg-amber-400 transition-all text-lg">
+                Let’s Build Your Store
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="py-32 px-8 bg-zinc-950">
+
+    <div class="max-w-4xl mx-auto glass p-16 md:p-24 rounded-3xl text-center">
+
+        <h4 class="text-5xl font-extrabold mb-10">
+            Let's Build Something Legendary
+        </h4>
+
+        <a href="mailto:zaifullah1727@gmail.com"
+           class="text-3xl break-all hover:text-teal-400 transition-colors block mb-12">
+            zaifullah1727@gmail.com
+        </a>
+
+        <div class="flex items-center justify-center gap-6 flex-wrap">
+
+            <!-- LINKEDIN -->
+            <a href="https://www.linkedin.com/in/zaif-ullah-02aa52388"
+               target="_blank"
+               class="glass w-16 h-16 rounded-3xl flex items-center justify-center text-3xl hover:bg-blue-600 transition-all">
+                in
+            </a>
+
+            <!-- INSTAGRAM -->
+            <a href="https://www.instagram.com/shopify.zaifullah/"
+               target="_blank"
+               class="glass w-16 h-16 rounded-3xl flex items-center justify-center hover:bg-pink-600 transition-all">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="w-8 h-8"
+                     fill="currentColor"
+                     viewBox="0 0 24 24">
+
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 
+                    3.252.148 4.771 1.691 4.919 4.919.058 
+                    1.265.069 1.645.069 4.849 0 3.205-.012 
+                    3.584-.069 4.849-.149 3.225-1.664 
+                    4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 
+                    0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 
+                    0-3.204.013-3.583.07-4.849.149-3.227 
+                    1.664-4.771 4.919-4.919 
+                    1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 
+                    0-3.667.014-4.947.072-4.358.2-6.78 
+                    2.618-6.98 6.98-.059 1.281-.073 
+                    1.689-.073 4.948 0 3.259.014 3.668.072 
+                    4.948.2 4.358 2.618 6.78 6.98 
+                    6.98 1.281.058 1.689.072 4.948.072 
+                    3.259 0 3.668-.014 4.948-.072 
+                    4.354-.2 6.782-2.618 
+                    6.979-6.98.059-1.28.073-1.689.073-4.948 
+                    0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 
+                    5.838c-3.403 0-6.162 2.759-6.162 
+                    6.162s2.759 6.163 6.162 6.163 
+                    6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 
+                    10.162c-2.209 0-4-1.79-4-4 
+                    0-2.209 1.791-4 4-4s4 1.791 
+                    4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 
+                    0-1.441.645-1.441 
+                    1.44s.645 1.44 1.441 1.44c.795 
+                    0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
 </body>
 </html>
