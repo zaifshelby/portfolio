@@ -59,9 +59,25 @@
     .group:hover .card-img {
       transform: scale(1.1);
     }
-    /* Preserve all original spacing */
-    .preserve-layout {
-      all: revert;
+    /* Pricing list styling */
+    .pricing-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .pricing-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+      line-height: 1.4;
+      color: #d4d4d4;
+    }
+    .pricing-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #10b981;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -171,12 +187,12 @@
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
         <p class="uppercase tracking-widest text-sm text-gray-400">Shopify Excellence</p>
-        <h2 class="text-5xl font-display italic mt-3">Selected Work</h2>
+        <h2 class="text-5xl font-display italic mt-3">Completed projects</h2>
         <p class="mt-4 text-gray-400">Explore premium flagship storefronts built for conversion, speed, and luxury brand storytelling.</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-12">
-        <!-- Lumina Shades Card (unchanged) -->
+        <!-- Lumina Shades Card -->
         <div class="card-3d group cursor-pointer" onclick="showCaseStudy(1)">
           <div class="card-3d-inner bg-zinc-900 rounded-3xl overflow-hidden border border-white/10">
             <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=1200&auto=format&fit=crop" 
@@ -192,10 +208,9 @@
           </div>
         </div>
 
-        <!-- Mairaj Watches Card - ONLY the image replaced with the new exact URL, everything else identical -->
+        <!-- Mairaj Watches Card - Updated image as specified -->
         <div class="card-3d group cursor-pointer" onclick="showCaseStudy(2)">
           <div class="card-3d-inner bg-zinc-900 rounded-3xl overflow-hidden border border-white/10">
-            <!-- REPLACED IMAGE: New watch mockup image URL exactly as provided -->
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgPa8ni4wNSV3HDOToRLIVrWUyZ8Ibff55aErSitKhCXIs5_XJiijXvcZB&s=10" 
                  class="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-110" 
                  alt="Mairaj Watches Premium Timepiece">
@@ -213,7 +228,7 @@
     </div>
   </section>
 
-  <!-- Pricing -->
+  <!-- Pricing - Updated with detailed feature lists -->
   <section id="pricing" class="py-24 bg-zinc-950">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
@@ -222,46 +237,81 @@
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="pricing-card card-3d bg-zinc-900 border border-white/10 rounded-3xl p-8">
-          <div class="card-3d-inner">
-            <p class="text-emerald-400 text-sm font-medium">STARTER</p>
+        <!-- BASIC / STARTER Package -->
+        <div class="pricing-card card-3d bg-zinc-900 border border-white/10 rounded-3xl p-8 flex flex-col h-full">
+          <div class="card-3d-inner flex flex-col h-full">
+            <p class="text-emerald-400 text-sm font-medium tracking-wide">BASIC</p>
             <h3 class="text-3xl font-display italic mt-2">Starter Shopify Store</h3>
             <div class="mt-6 flex items-baseline"><span class="text-5xl font-semibold">$100</span></div>
-            <ul class="mt-8 space-y-3 text-sm">
-              <li>✓ Store Setup + 10 Products</li>
-              <li>✓ Responsive Design</li>
-              <li>✓ Basic SEO & Pages</li>
+            <ul class="pricing-list mt-6 space-y-2">
+              <li>Shopify store setup</li>
+              <li>Free theme customization</li>
+              <li>Mobile responsive design</li>
+              <li>Up to 10 product uploads</li>
+              <li>Essential pages (Home, About, Contact, Policies)</li>
+              <li>Payment gateway setup</li>
+              <li>Shipping setup</li>
+              <li>Domain connection</li>
+              <li>Navigation/menu setup</li>
+              <li>Basic SEO setup</li>
+              <li>Social media integration</li>
             </ul>
-            <a href="#contact" class="btn-3d mt-10 block w-full text-center py-4 bg-white text-black rounded-2xl">Choose $100</a>
+            <div class="mt-6 pt-4 border-t border-white/10">
+              <p class="text-gray-400 text-xs"><span class="text-emerald-400 font-medium">Delivery:</span> 3 days</p>
+              <p class="text-gray-400 text-xs mt-1"><span class="text-emerald-400 font-medium">Revisions:</span> 2</p>
+            </div>
+            <a href="#contact" class="btn-3d mt-8 block w-full text-center py-4 bg-white text-black rounded-2xl font-medium">Choose $100</a>
           </div>
         </div>
 
-        <div class="pricing-card card-3d bg-zinc-900 border border-emerald-400 rounded-3xl p-8 relative scale-105 shadow-2xl">
+        <!-- STANDARD / PROFESSIONAL Package - Most Popular -->
+        <div class="pricing-card card-3d bg-zinc-900 border border-emerald-400 rounded-3xl p-8 relative scale-105 shadow-2xl flex flex-col h-full">
           <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-400 text-black text-xs font-bold px-6 py-1.5 rounded-full">MOST POPULAR</div>
-          <div class="card-3d-inner">
-            <p class="text-emerald-400 text-sm font-medium">PROFESSIONAL</p>
+          <div class="card-3d-inner flex flex-col h-full">
+            <p class="text-emerald-400 text-sm font-medium tracking-wide">STANDARD</p>
             <h3 class="text-3xl font-display italic mt-2">Professional Shopify Store</h3>
             <div class="mt-6 flex items-baseline"><span class="text-5xl font-semibold">$300</span></div>
-            <ul class="mt-8 space-y-3 text-sm">
-              <li>✓ Everything in Starter</li>
-              <li>✓ Premium Design + 30 Products</li>
-              <li>✓ Speed & SEO Optimization</li>
+            <ul class="pricing-list mt-6 space-y-2">
+              <li><span class="font-medium text-white">Everything in Basic, plus:</span></li>
+              <li>Premium theme customization</li>
+              <li>Up to 30 product uploads</li>
+              <li>Branded homepage design</li>
+              <li>Collection/category setup</li>
+              <li>Shopify apps integration (basic store apps)</li>
+              <li>Product page optimization</li>
+              <li>Speed optimization</li>
+              <li>On-page SEO improvements</li>
             </ul>
-            <a href="#contact" class="btn-3d mt-10 block w-full text-center py-4 bg-emerald-400 text-black rounded-2xl">Choose $300</a>
+            <div class="mt-6 pt-4 border-t border-white/10">
+              <p class="text-gray-400 text-xs"><span class="text-emerald-400 font-medium">Delivery:</span> 5 days</p>
+              <p class="text-gray-400 text-xs mt-1"><span class="text-emerald-400 font-medium">Revisions:</span> 5</p>
+            </div>
+            <a href="#contact" class="btn-3d mt-8 block w-full text-center py-4 bg-emerald-400 text-black rounded-2xl font-medium">Choose $300</a>
           </div>
         </div>
 
-        <div class="pricing-card card-3d bg-zinc-900 border border-white/10 rounded-3xl p-8">
-          <div class="card-3d-inner">
-            <p class="text-emerald-400 text-sm font-medium">ADVANCED</p>
+        <!-- PREMIUM / ADVANCED Package -->
+        <div class="pricing-card card-3d bg-zinc-900 border border-white/10 rounded-3xl p-8 flex flex-col h-full">
+          <div class="card-3d-inner flex flex-col h-full">
+            <p class="text-emerald-400 text-sm font-medium tracking-wide">PREMIUM</p>
             <h3 class="text-3xl font-display italic mt-2">Advanced Shopify Store</h3>
             <div class="mt-6 flex items-baseline"><span class="text-5xl font-semibold">$500</span></div>
-            <ul class="mt-8 space-y-3 text-sm">
-              <li>✓ Everything in Professional</li>
-              <li>✓ Advanced Design + 70 Products</li>
-              <li>✓ Full SEO + Priority Support</li>
+            <ul class="pricing-list mt-6 space-y-2">
+              <li><span class="font-medium text-white">Everything in Standard, plus:</span></li>
+              <li>Advanced homepage design</li>
+              <li>Up to 70 product uploads</li>
+              <li>Conversion-focused store structure</li>
+              <li>Custom banners for homepage</li>
+              <li>Multi-currency setup (if needed)</li>
+              <li>Full SEO optimization for products and pages</li>
+              <li>Live chat integration</li>
+              <li>Priority support</li>
             </ul>
-            <a href="#contact" class="btn-3d mt-10 block w-full text-center py-4 bg-white text-black rounded-2xl">Choose $500</a>
+            <div class="mt-6 pt-4 border-t border-white/10">
+              <p class="text-gray-400 text-xs"><span class="text-emerald-400 font-medium">Delivery:</span> 7 days</p>
+              <p class="text-gray-400 text-xs mt-1"><span class="text-emerald-400 font-medium">Revisions:</span> Unlimited</p>
+            </div>
+            <a href="#contact" class="btn-3d mt-8 block w-full text-center py-4 bg-white text-black rounded-2xl font-medium">Choose $500</a>
           </div>
         </div>
       </div>
@@ -285,7 +335,6 @@
     </div>
   </div>
 </section>
-
   <!-- Contact -->
   <section id="contact" class="py-24 bg-zinc-950">
     <div class="max-w-5xl mx-auto px-6">
@@ -398,14 +447,12 @@
       if (e.key === "Escape") closeModal();
     });
     
-    // Add extra safeguard to ensure image containers scale properly while preserving exact layout.
-    // No additional redesign, just ensuring object-fit cover behaves identically on all screens.
+    // Ensure Mairaj image scaling remains consistent
     const mairajImg = document.querySelector('.card-3d:last-child img');
     if (mairajImg) {
       mairajImg.style.objectFit = 'cover';
       mairajImg.style.width = '100%';
       mairajImg.style.height = '24rem';
-      // Maintain responsiveness
       window.addEventListener('resize', function() {
         if (window.innerWidth < 768) {
           mairajImg.style.height = '18rem';
